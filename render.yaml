@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: quote-generator-api
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt && playwright install --with-deps chromium
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
